@@ -3,23 +3,24 @@ Tire Analysis for Formula SAE (formula Student). The specific results below were
 
 This work was done in 2018-2020, and served as the basis for a strategy / systems engineering analysis to generate car requirements based on performance goals ([Point sensitivity](https://www.researchgate.net/publication/392030237_POINT_SENSITIVITY_FSAE_Design_Parameter_Analysis)), and in the [Capstone project](https://www.researchgate.net/publication/392028874_Development_of_an_Electric_Powertrain_System_for_a_Formula_SAE_Race_Car) - designing an Electric racecar. 
 
+![image](Figures/SA%20Sweep.png)
+>NFY = mormalized lateral (cornering) coefficient of the tire. SA = slip angle (degrees) - angle of the rim relative to the contact patch direction
+
 This work used tire data from "TTC" (Tire Testing Consortium), which is propriatary and cannot be publicly shared. I am sharing a few graphs with the identifying information removed. 
 
 ![image](Figures/IMG_5756.JPG)
 
-
-The data is in csv or matlab files, and is ~60k rows of data from tire test "sweeps", where a tire is cycled through various conditions with sensors reporting speed, angle, displacement, forces and torques for each axis (Fx, Fy, Fz, Mx, My, Mz). These forces and torques at the various angles and speeds were the drivers of various design decisions - 
+The data is provided per-tire in csv or matlab files, and is ~60k rows of data from tire test "sweeps", where a tire is cycled through various conditions with sensors reporting speed, angle, displacement, forces and torques for each axis (Fx, Fy, Fz, Mx, My, Mz). These forces and torques at the various angles and speeds were the drivers of various design decisions - 
 
 - Suspension geometry, to put the tire in an "optimal" angle (Camber/ Toe) for the majority of a racing course 
-- Steering geometry, to balance low speed manuvering and high speed grip (each tire needs a different angle at varying loads)
+- Steering geometry, to balance low speed manuvering and high speed grip (Ackermann steering - each tire needs a different angle at varying loads)
 - Tire choice: various tires are tested, and the data should ideally save on expensive real-world testing of many tire models. 
+- Aero decisions: tire load varies based on aero load, and later on tradeoffs of ride-height to suspension stiffness also need to be made
+- Engine power and gearing: based on available grip and expected lap speeds, optimal gearing can be selected, and prioritization of engine upgrades can be done
 
-In the end, tires were chosen, and the 2019 and 2020 analysis built on this work by analysing temperature behavior, and going into more depth on steering behavior. However, the core analysis here was still referenced
+The 2018 analysis helped chose tires (as well as validated prior choices), and the 2019 and 2020 analysis built on this work by analysing temperature behavior, and going into more depth on steering behavior.
 
 The raw data from a single sweep was extracted in Matlab ([MatlabTireAnalyzerCalculatorInterpSA.m](MatlabTireAnalyzerCalculatorInterpSA.m)), while some initial analysis was done in Excel ([Weight_transfer_with_load_sensitivity](Weight_transfer_with_load_sensitivity)). 
-
-![image](Figures/SA_Sweep2.png)
->NFY = mormalized lateral (cornering) coefficient of the tire. SA = slip angle (degrees) - angle of the rim relative to the contact patch direction
 
 Some data was obtained from testing with displacement sensors (linear potentiometers) on the prior year car. 
 ![image](Figures/Potentiometer%20Data.png)
@@ -37,7 +38,7 @@ Further process was then as follows:
 >Front suspension geometry, with roll angle as the variable to optimize based on tire analysis 
 
 
-# Results 
+# Summary of Results 
 ## Load Sesnitivity
 The first results were "load sensitivity" of the tires. This allows comparing different tires, and extracting grip levels at dynamic loading (under acceleration, tire load varies)
 
@@ -78,7 +79,7 @@ Tire wear was further validated with temperature probes at the inside, middle, a
 >Different tires exhibit varying temperature charactristics.
 
 ![image](Figures/Tire%20warmup%20study.jpg)
->Smaller tires heat up quicker. This is an advantage for a short course, and can offset absolute max grip loss. 
+>Smaller tires heat up quicker. This is an advantage for a short course, and can offset absolute max grip loss. This was a factor in deciding to go for smaller diameter tires.
 
 ## Center of Gravity
 Sweeps of Mass and CG (center of gravity) height/fore-aft location effect on car balance and grip were done. These were fairly rudementary, based on a steady state car model. Later on, full lap simulation was done [point sensitivity](https://www.researchgate.net/publication/392030237_POINT_SENSITIVITY_FSAE_Design_Parameter_Analysis). 
@@ -90,7 +91,7 @@ Fore-aft location and height helped set the driver position - for instance, driv
 ![image](Figures/Ergo.png)
 >driver position and seating angle
 
-This had to be balanced with component packaging requirements. 
+This had to be balanced with component packaging requirements and ergonomics (tested in a physical "ergo rig" with a driving simulator)
 ![image](Figures/image64.png)
 
 ## Strength data 
