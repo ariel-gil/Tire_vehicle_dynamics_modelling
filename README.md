@@ -1,4 +1,4 @@
-# Tire Analysis and Vehicle Dynamics - 2018-2020
+# Tire and Vehicle Dynamics Modelling - 2018-2020
 Tire Analysis for Formula SAE (formula Student). The specific results below were not published, so are summarized below. 
 
 This work was done in 2018-2020, and served as the basis for a strategy / systems engineering analysis to generate car requirements based on performance goals ([Point sensitivity](https://www.researchgate.net/publication/392030237_POINT_SENSITIVITY_FSAE_Design_Parameter_Analysis)), and in the [Capstone project](https://www.researchgate.net/publication/392028874_Development_of_an_Electric_Powertrain_System_for_a_Formula_SAE_Race_Car) - designing an Electric racecar. 
